@@ -1,4 +1,9 @@
-import { Module } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
 
-@Module({})
+import { Module } from '@nestjs/common';
+import { UserController } from './user.controller';
+
+@Module({
+  controllers: [UserController]
+})
 export class UserModule {}
