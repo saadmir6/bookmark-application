@@ -1,12 +1,16 @@
 /* eslint-disable prettier/prettier */
 
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { User } from '@prisma/client';
+import { GetUser } from 'src/auth/decorator';
+import { JwtGuard } from 'src/auth/guard';
 
 // path( /user/me )
+@UseGuards(JwtGuard)
 @Controller('user')
 export class UserController {
     @Get('me')
-    getMe() {
-        return 'user info';
+    getMe(@GetUser() user : User) {
+        return user;
     }
 }
